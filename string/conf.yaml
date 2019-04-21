@@ -1,0 +1,51 @@
+args:
+- cases: [1]
+  n: 1000000
+  is_abc: False
+  is_random: False
+- cases: [2, 3]
+  n: 1000
+  is_abc: True
+  is_random: True
+- cases: [4]
+  n: 200000
+  is_abc: True
+  is_random: True
+- cases: [5, 6, 7]
+  n: 200000
+  is_abc: False
+  is_random: False
+- cases: [8, 9, 10]
+  n: 1000000
+  is_abc: False
+  is_random: False
+
+compile: {c: -O2 -std=c11, cpp: -O2 -std=c++11, java: '', pas: -O2, py: ''}
+data:
+- cases: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+folder: problem
+memory limit: 1024 MB
+name: string
+partial score: false
+pre:
+- cases: [1]
+samples:
+- cases: [1]
+time limit: 3.0
+title: {zh-cn: 字符串}
+type: program
+users:
+  acesrc:
+    greedy.cpp:
+      expected: []
+      path: acesrc/greedy.cpp
+    log2.cpp:
+      expected: []
+      path: acesrc/log2.cpp
+  lhy:
+    a.cpp:
+      expected: []
+      path: lhy/a.cpp
+  std:
+    std.cpp: {expected: == 100, path: std/std.cpp}
+version: 2

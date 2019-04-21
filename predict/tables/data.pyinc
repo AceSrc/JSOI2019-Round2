@@ -1,0 +1,11 @@
+ret = [["测试点","$T$", "$n$","$m$"]]
+for datum in prob['args']:	#引用conf.json/yaml中的变量
+	row = [
+		','.join(map(str, datum['cases'])),	
+		"$= %s$" % tl.hn(datum['T']),
+		r"$\le %s$" % tl.hn(datum['n']),
+		r"$\le %s$" % tl.hn(datum['m']),
+	]
+	ret.append(row)	#这是python数组的push_back
+base.log.debug(u'输出调试信息')	#渲染题面时会在控制台输出需要调试的信息，不需要可以删除
+return merge_ver(ret)	#这个函数可以把竖直方向上相同的格子合并

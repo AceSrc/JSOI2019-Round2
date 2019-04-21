@@ -1,0 +1,189 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef pair<int, int> Pair;
+
+//const int maxn = 50000 + 7;
+//const int maxm = 100000 + 7;
+const int maxn = 7 + 1;
+const int maxm = 6 + 1;
+
+bitset<maxn> f[maxn * 3];
+stack<int> manager;
+
+int N = 0;
+int T, n, m, deg[maxm * 4], idx[maxm * 4], last[maxn];
+int token[maxm * 4], ans_token[maxn];
+map<Pair, int> mp;
+vector<int> e[maxm * 4];
+int v_token[maxn * 4];
+
+int id(int t, int x, bool flag) {
+    if (mp.count(Pair(t, x)) == 0) {
+        idx[N >> 1] = x;
+        mp[Pair(t, x)] = N++; 
+        N++;
+    }
+    return mp[Pair(t, x)] + flag;
+}
+
+void add(int t1, int x, bool xflag, int t2, int y, bool yflag) {
+    assert(t1 >= 1 && t1 <= T);
+    assert(t2 >= 1 && t2 <= T);
+    assert(x <= n && y <= n);
+    int A = id(t1, x, xflag);
+    int B = id(t2, y, yflag);
+    e[A].push_back(B);
+    if (xflag) deg[B]++;
+    //if (A == 141 && B == 139) {
+        //cout << t1 << ' ' << x << ' ' << t2 << ' ' << y << endl;
+    //}
+}
+
+int main(int argc, char **argv) {
+    scanf("%d%d%d", &T, &n, &m);
+    for (int i = 1; i < 3 * maxn; i++) manager.push(i);
+    for (int i = 1; i <= m; i++) {
+        int action, t, x, y;
+        scanf("%d%d%d%d", &action, &t, &x, &y);
+        assert(x <= n && y <= n);
+        assert(t >= 1 && t <= T);
+        if (action == 0) {
+            add(t, x, false, t + 1, y, false);
+            add(t + 1, y, true, t, x, true);
+        }
+        else {
+            add(t, x, true, t, y, false);
+            add(t, y, true, t, x, false);
+        }
+    }
+
+
+    for (int i = 1; i <= n; i++) last[i] = -1;
+    for (auto ptr = mp.rbegin(); ptr != mp.rend(); ptr++) {
+        int u = ptr->second;
+        if (e[u].size() == 0) {
+            if (last[idx[u >> 1]] != -1) {
+                if (token[ last[ idx[u >> 1] ] ]) 
+                    v_token[u] = token[ last[ idx[u >> 1] ] ];
+                else 
+                    v_token[u] = v_token[ last[ idx[u >> 1] ] ];
+            }
+            //if (u == 12) {
+                //cout << v_token[u] << ' ' << v_token[ last[ idx[u >> 1] ] ] << ' ' << f[23][2] << endl;
+            //}
+            last[ idx[u >> 1] ] = u;
+            continue;
+        }
+        token[u] = manager.top(); manager.pop();
+        if (last[ idx[u >> 1] ] != -1) {
+            if (token[ last[ idx[u >> 1] ] ]) 
+                f[ token[u] ] = f[ token[ last[ idx[u >> 1] ] ] ];
+            else if (v_token[ last[ idx[u >> 1] ] ])
+                f[ token[u] ] = f[ v_token[ last[ idx[u >> 1] ] ] ];
+        }
+        f[ token[u] ].set(idx[u >> 1]);
+        last[ idx[u >> 1] ] = u;
+
+        for (auto &v : e[u]) {
+            if (token[v]) f[ token[u] ] |= f[ token[v] ];
+            else if (v_token[v]) f[ token[u] ] |= f[ v_token[v] ];
+            else f[ token[u] ].set(idx[v >> 1]);
+        }
+    }
+    for (auto &v : mp) 
+        if (deg[v.second] == 0) {
+            if (token[v.second]) {
+                manager.push(token[v.second]);
+                token[v.second] = 0;
+            }
+        }
+
+    for (int i = 1; i <= n; i++) last[i] = -1;
+    for (auto ptr = mp.begin(); ptr != mp.end(); ptr++) {
+        int u = ptr->second + 1;
+        //cout << u << ' ' << f[23][2] << endl;
+        if (e[u].size() == 0) {
+            if (last[idx[u >> 1]] != -1 && deg[ idx[u >> 1] ] == 0) {
+                token[u] = token[ last[ idx[u >> 1] ] ];
+                token[ last[ idx[u >> 1] ] ] = 0;
+            }
+            last[ idx[u >> 1] ] = u;
+            continue;
+        }
+
+        assert(!manager.empty());
+        token[u] = manager.top(); manager.pop();
+        if (last[ idx[u >> 1] ] != -1 && token[ last[ idx[u >> 1] ] ]) {
+            f[ token[u] ] = f[ token[ last[ idx[u >> 1] ] ] ];
+            if (deg[ last[ idx[u >> 1] ] ] == 0) {
+                manager.push(token[ last[ idx[u >> 1] ] ]);
+                token[ last[ idx[u >> 1] ] ] = 0;
+            }
+        }
+        else f[ token[u] ].reset();
+        last[ idx[u >> 1] ] = u;
+
+        //if (u == 13) {
+            //cout << token[u] << ' ' << f[23][2] << endl;
+        //}
+        for (auto &v : e[u]) {
+            //if (u == 15) {
+                //cout << v << ' ' << idx[v >> 1] << endl;
+                //cout << token[v] << ' ' << v_token[v] << endl;
+                //cout << f[ token[v] ].count() << endl;
+                //cout << f[ v_token[v] ].count() << endl;
+                //cout << f[ token[v] ][2] << endl;
+                //cout << f[ v_token[v] ][2] << endl;
+                //cout << f[23][2] << endl;
+            //}
+            if (token[v]) f[ token[u] ] |= f[ token[v] ];
+            else if (v_token[v]) f[ token[u] ] |= f[ v_token[v] ];
+            else if (!(v & 1)) {
+                f[ token[u] ].set(idx[v >> 1]);
+            }
+            deg[v]--;
+            if (deg[v] == 0) {
+                if ((v & 1) && v == last[ idx[v >> 1] ]) continue;
+                if (token[v]) {
+                    manager.push(token[v]);
+                    token[v] = 0;
+                }
+            }
+        }
+    }
+
+    for (int i = 1; i <= n; i++) {
+        assert(!manager.empty());
+        ans_token[i] = manager.top();
+        f[ ans_token[i] ].reset();
+        manager.pop();
+    }
+
+    for (auto ptr = mp.begin(); ptr != mp.end(); ptr++) {
+        int u = ptr->second + 1;
+        if (token[u]) {
+            f[ ans_token[ idx[u >> 1]  ] ] |= f[ token[u] ];
+            manager.push(token[u]);
+        }
+    }
+    int forbid = manager.top(); manager.pop(); 
+    f[forbid].reset();
+
+    for (int i = 1; i <= n; i++) {
+        if (f[ ans_token[i] ][i]) f[forbid].set(i);
+    }
+
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) cout << f[ans_token[i]][j];
+        cout << endl;
+    }
+    for (int i = 1; i <= n; i++) {
+        if (f[ ans_token[i] ][i]) printf("0");
+        else printf("%d", n - 1 - (int)(f[ ans_token[i] ] | f[forbid]).count());
+        if (i != n) printf(" ");
+    }
+    puts("");
+    return 0;
+}
+
