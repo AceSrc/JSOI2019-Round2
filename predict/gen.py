@@ -107,7 +107,7 @@ def gen(cases, T, n, m, algo):
 
 if __name__ == '__main__':
     compile()
-    gen(0, 3, 3, 6, 0)
+    gen(0, 3, 4, 8, 0)
     for i in range(1, 21):
         if i == 1: gen(i, 2, 10, 10, 0)
         elif i <= 3: gen(i, 100, 100, 200, 0)

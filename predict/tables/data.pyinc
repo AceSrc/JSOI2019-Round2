@@ -2,7 +2,7 @@ ret = [["测试点","$T$", "$n$","$m$"]]
 for datum in prob['args']:	#引用conf.json/yaml中的变量
 	row = [
 		','.join(map(str, datum['cases'])),	
-		"$= %s$" % tl.hn(datum['T']),
+		"$\le %s$" % tl.hn(datum['T']),
 		r"$\le %s$" % tl.hn(datum['n']),
 		r"$\le %s$" % tl.hn(datum['m']),
 	]

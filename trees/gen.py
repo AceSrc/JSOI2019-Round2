@@ -16,6 +16,10 @@ def run(cases):
 
 if __name__ == '__main__':
     compile()
+    sp = subprocess.Popen(["./mk data/0.in 5"], shell=True)
+    sp.communicate()
+    assert sp.returncode == 0
+    run(0)
     for i in range(1, 11):
         sp = subprocess.Popen(["./mk data/%d.in %d9" % (i, i - 1)], shell=True)
         sp.communicate()

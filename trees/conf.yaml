@@ -1,14 +1,50 @@
-args: {n: 1000}
+args:
+- cases: [1]
+  n: 10
+  m: 3
+  k: 10
+- cases: [2, 3]
+  n: 20
+  m: 5
+  k: 20
+- cases: [4]
+  n: 300
+  m: 300 
+  k: 1
+- cases: [5]
+  n: 600
+  m: 300 
+  k: 2
+- cases: [6]
+  n: 2500
+  m: 1250
+  k: 2
+- cases: [7, 8]
+  n: 2500
+  m: 2500
+  k: 2500
+- cases: [9, 10]
+  n: 5000
+  m: 5000
+  k: 5000
+
 compile: {c: -O2 -std=c11, cpp: -O2 -std=c++11, java: '', pas: -O2, py: ''}
-data: []
+data:
+- cases: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 folder: problem
-memory limit: 512 MiB
+memory limit: 512 MB
 name: trees
 partial score: false
-pre: []
-samples: []
+pre:
+- cases: [1]
+samples:
+- cases: [1]
 time limit: 1.0
 title: {zh-cn: 树}
 type: program
-users: {}
+users:
+  std:
+    brute.cpp: {expected: == 100, path: std/brute.cpp}
+    nttdp.cpp: {expected: == 100, path: std/nttdp.cpp}
+    std.cpp: {expected: == 100, path: std/std.cpp}
 version: 2
