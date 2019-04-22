@@ -11,7 +11,11 @@ args:
   n: 200000
   is_abc: True
   is_random: True
-- cases: [5, 6, 7]
+- cases: [5]
+  n: 50000
+  is_abc: False
+  is_random: False
+- cases: [6, 7]
   n: 200000
   is_abc: False
   is_random: False
@@ -31,21 +35,12 @@ pre:
 - cases: [1]
 samples:
 - cases: [1]
-time limit: 3.0
+time limit: 200.0
 title: {zh-cn: 字符串}
 type: program
 users:
   acesrc:
-    greedy.cpp:
+    bf.cpp:
       expected: []
-      path: acesrc/greedy.cpp
-    log2.cpp:
-      expected: []
-      path: acesrc/log2.cpp
-  lhy:
-    a.cpp:
-      expected: []
-      path: lhy/a.cpp
-  std:
-    std.cpp: {expected: == 100, path: std/std.cpp}
+      path: acesrc/bf.cpp
 version: 2

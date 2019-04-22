@@ -28,3 +28,5 @@ arbiter*
 *.tmp
 **.class
 **.pyc
+*.in
+*.ans

@@ -100,7 +100,7 @@ def gen(cases, n, is_sample=False):
         if cases == 6:
             rt = algo1(n, 100000, 4, 1000)
         if cases == 5:
-            rt = algo2(n, 300)
+            rt = algo2(n, n // (26 * 25))
         if cases >= 2 and cases <= 4:
             rt = randstr(n, 'abc')
         if cases == 1:
@@ -117,6 +117,7 @@ if __name__ == '__main__':
     for i in range(1, 11):
         if i == 1: gen(i, 10)
         elif i <= 3: gen(i, 1000)
+        elif i == 5: gen(i, 50000)
         elif i <= 7: gen(i, 200000)
         elif i <= 10: gen(i, 1000000)
         print("testcase %d finished." % i)

@@ -1,50 +1,55 @@
 args:
 - cases: [1]
-  n: 10
+  k: 0
   m: 3
-  k: 10
-- cases: [2, 3]
-  n: 20
-  m: 5
-  k: 20
-- cases: [4]
-  n: 300
-  m: 300 
-  k: 1
-- cases: [5]
+  n: 10
+- cases: [2]
+  k: 0
+  m: 4
+  n: 15
+- cases: [3]
+  k: 2
+  m: 300
   n: 600
-  m: 300 
-  k: 2
-- cases: [6]
-  n: 2500
-  m: 1250
-  k: 2
-- cases: [7, 8]
-  n: 2500
-  m: 2500
-  k: 2500
-- cases: [9, 10]
+- cases: [4, 5, 6]
+  k: 3
+  m: 300
+  n: 900
+- cases: [7, 8, 9, 10]
+  k: -50
+  m: -50
+  n: -2500
+- cases: [11, 12, 13, 14]
+  is_line: true
+  k: 0
+  m: 300
   n: 5000
-  m: 5000
-  k: 5000
-
+- cases: [15, 16, 17, 18, 19, 20]
+  k: 0
+  m: 300
+  n: 5000
 compile: {c: -O2 -std=c11, cpp: -O2 -std=c++11, java: '', pas: -O2, py: ''}
 data:
 - cases: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+- cases: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 folder: problem
-memory limit: 512 MB
+memory limit: 1024 MB
 name: trees
 partial score: false
 pre:
-- cases: [1]
+- cases: [trees1, trees2]
 samples:
-- cases: [1]
+- cases: [trees1, trees2]
 time limit: 1.0
 title: {zh-cn: 树}
 type: program
 users:
+  lhy:
+    b.cpp: {expected: == 100, path: lhy/b.cpp}
+    brute.cpp:
+      expected: []
+      path: lhy/brute.cpp
   std:
-    brute.cpp: {expected: == 100, path: std/brute.cpp}
-    nttdp.cpp: {expected: == 100, path: std/nttdp.cpp}
+    a.cpp: {expected: == 100, path: std/a.cpp}
     std.cpp: {expected: == 100, path: std/std.cpp}
 version: 2

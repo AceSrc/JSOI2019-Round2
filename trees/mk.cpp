@@ -4,7 +4,7 @@
 using namespace std;
 typedef pair<int,int> pi;
 typedef long long ll;
-const int maxn=505;
+const int maxn=5555;
 const ll M=998244353;
 int tp;
 int n,m;
@@ -45,8 +45,8 @@ void star_tree(int n){
     print_tree(n);
 }
 
-void line_tree(int n){
-    if (n<=20){
+void line_tree(int n,int op=0){
+    if (n<=20||op==1){
         for (int i=1;i<n;i++) a[i]=(pi){i,i+1};
     } else {
         for (int i=1;i<n-10;i++) a[i]=(pi){i,i+1};
@@ -74,83 +74,80 @@ void fill_sz(int n,int m){
 }
 
 int main(int argc, char **argv){
-    assert(argc >= 3);
     //special_tree(10);
+    //freopen("large.in","w",stdout);
+    assert(argc >= 2);
     freopen(argv[1], "w", stdout);
-    auto tp = atoi(argv[2]);
-    gen.seed(tp+19260817);
-    if (tp/10==0) { // 10 v
+    int tp = atoi(argv[2]);
+    gen.seed(tp * 10 + 9 +19260817);
+    if (tp==21){
+        // sample 1
+        n=5; m=2;
+        cout << m << endl;
+        fill_sz(n,m);
+        for (int i=0;i<m;i++) Random_tree(sz[i]);
+    }
+    if (tp==22){
+        // sample 2
+        n=6; m=3;
+        cout << m << endl;
+        fill_sz(n,m);
+        for (int i=0;i<m;i++) Random_tree(sz[i]);
+    }
+    if (tp==1){
         // 5 point
         n=10; m=3;
-        cout << 3 << endl;
-        fill_sz(n,m);
-        for (int i=0;i<m;i++) Random_tree(sz[i]);
-    }
-    if (tp/10==1) { // 20 v
-        // 5 point
-        n=20; m=5;
-        cout << 5 << endl;
-        fill_sz(n,m);
-        for (int i=0;i<m;i++) Random_tree(sz[i]);
-    }
-    if (tp/10==2) { // 20 v
-        // 5 point
-        n=20; m=5;
-        cout << 5 << endl;
-        fill_sz(n,m);
-        for (int i=0;i<m;i++) Random_tree(sz[i]);
-    }
-    if (tp/10==3) { // 300 v
-        cout << 300 << endl;
-        m=300;
-        for (int i=0;i<m;i++) Random_tree(1);
-    }
-    if (tp/10==4) { // 600 v 
-        cout << 300 << endl;
-        m=300;
-        for (int i=0;i<m;i++) Random_tree(1+gen()%2);
-    }
-    if (tp/10==5) { // 2500 v 
-        m=1250;
         cout << m << endl;
+        fill_sz(n,m);
+        for (int i=0;i<m;i++) Random_tree(sz[i]);
+    }
+    if (tp==2){
+        // 5 point
+        n=15; m=4;
+        cout << m << endl;
+        fill_sz(n,m);
+        for (int i=0;i<m;i++) Random_tree(sz[i]);
+    }
+    if (tp==3){
+        // 5 point
+        // 300 * (1~2 point) tree
+        cout << 300 << endl;
+        m=300;
         for (int i=0;i<m;i++) Random_tree(1+gen()%2);
     }
-    if (tp/10==6){ // 2500 v
+    if (tp==4 || tp == 5 || tp == 6){
+        // 15 point
+        // 300 * (1~3 point) tree
+        cout << 300 << endl;
+        m=300;
+        for (int i=0;i<m;i++) Random_tree(1+gen()%3);
+    }
+    if (tp==7 || tp == 8 || tp == 9 || tp == 10){
+        // 20 point
+        // 50 * (50 point) tree
         cout << 50 << endl;
         m=50;
         for (int i=0;i<m;i++) Random_tree(50);
     }
-    if (tp/10==7){ // 2500 v
-        n = 2500, m = 300;
-        cout << m << endl;
-        fill_sz(n, m);
-        for (int i=0;i<m;i++) Random_tree(sz[i]);
-    }
-    if (tp/10==8){ // 5000 v
+    if (tp==11 || tp == 12 || tp == 13 || tp == 14){
+        // 20 point
+        // 300 * line_tree, sum(m)<=5000
         cout << 300 << endl;
-        n=1000; m=290;
+        n=1000; m=294;
         fill_sz(n,m);
-        for (int i=0;i<10;i++) line_tree(400);
-        for (int i=0;i<m;i++) line_tree(sz[i]);
+        for (int i=0;i<4;i++) line_tree(400,1);
+        for (int i=0;i<m;i++) line_tree(sz[i],1);
+        for (int i=0;i<2;i++) line_tree(1200,1);
     }
-    if (tp/10==9){ // 5000 v
+    if (tp >= 15 && tp <= 20){
+        // 30 point
+        // 300 * tree, sum(m)<=5000
         cout << 300 << endl;
-        n=1000; m=290;
+        n=1000; m=294;
         fill_sz(n,m);
-        for (int i=0;i<10;i++) Random_tree(400);
+        for (int i=0;i<4;i++) Random_tree(400);
         for (int i=0;i<m;i++) Random_tree(sz[i]);
+        special_tree(1200);
+        star_tree(1200);
     }
-    //if (tp/10==7){ //  
-        //// 10 point
-        //cout << 300 << endl;
-        //for (int i=0;i<300;i++) line_tree(400);
-    //}
-    //if (tp/10==8){
-        //// 10 point
-        //cout << 300 << endl;
-        //for (int i=0;i<300;i++) Random_tree(400);
-    //}
 }
-
-
-
