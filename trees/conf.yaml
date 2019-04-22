@@ -37,9 +37,9 @@ memory limit: 1024 MB
 name: trees
 partial score: false
 pre:
-- cases: [trees1, trees2]
+- cases: [1, 2]
 samples:
-- cases: [trees1, trees2]
+- cases: [1, 2]
 time limit: 1.0
 title: {zh-cn: 树}
 type: program

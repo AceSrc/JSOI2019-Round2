@@ -1,32 +1,32 @@
 args:
 - cases: [1]
+  is_abc: false
+  is_random: false
   n: 1000000
-  is_abc: False
-  is_random: False
 - cases: [2, 3]
+  is_abc: true
+  is_random: true
   n: 1000
-  is_abc: True
-  is_random: True
 - cases: [4]
+  is_abc: true
+  is_random: true
   n: 200000
-  is_abc: True
-  is_random: True
 - cases: [5]
+  is_abc: false
+  is_random: false
   n: 50000
-  is_abc: False
-  is_random: False
 - cases: [6, 7]
+  is_abc: false
+  is_random: false
   n: 200000
-  is_abc: False
-  is_random: False
 - cases: [8, 9, 10]
+  is_abc: false
+  is_random: false
   n: 1000000
-  is_abc: False
-  is_random: False
-
 compile: {c: -O2 -std=c11, cpp: -O2 -std=c++11, java: '', pas: -O2, py: ''}
 data:
-- cases: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+- cases: [8, 9, 10]
+- cases: [1, 2, 3, 4, 5, 6, 7]
 folder: problem
 memory limit: 1024 MB
 name: string
@@ -35,7 +35,7 @@ pre:
 - cases: [1]
 samples:
 - cases: [1]
-time limit: 200.0
+time limit: 2.0
 title: {zh-cn: 字符串}
 type: program
 users:
@@ -43,4 +43,16 @@ users:
     bf.cpp:
       expected: []
       path: acesrc/bf.cpp
+    greedy.cpp:
+      expected: []
+      path: acesrc/greedy.cpp
+    log2.cpp:
+      expected: []
+      path: acesrc/log2.cpp
+  lhy:
+    a.cpp:
+      expected: []
+      path: lhy/a.cpp
+  std:
+    std.cpp: {expected: == 100, path: std/std.cpp}
 version: 2

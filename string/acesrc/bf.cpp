@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int maxn = 300000 + 7;
+const int maxn = 1000000 + 7;
 char s[maxn];
 int MinimalRep(const char *s, int n) {
   int i = 0, j = 1;

@@ -107,8 +107,8 @@ def gen(cases, T, n, m, algo):
 
 if __name__ == '__main__':
     compile()
-    gen(0, 3, 4, 8, 0)
-    for i in range(1, 21):
+    # gen(0, 3, 4, 8, 0)
+    for i in range(1, 13):
         if i == 1: gen(i, 2, 10, 10, 0)
         elif i <= 3: gen(i, 100, 100, 200, 0)
         elif i == 4: gen(i, 40000, 10000, 20000, 1)
@@ -118,6 +118,16 @@ if __name__ == '__main__':
         elif i == 8: gen(i, 1000000, 50000, 100000, 1)
         elif i == 9: gen(i, 1000000, 50000, 100000, 2)
         elif i == 10: gen(i, 1000000, 50000, 100000, 3)
+        elif i == 11: gen(i, 3, 3, 6, 0)
+        elif i == 12: gen(i, 10, 5, 10, 0)
+    
+    # for i in range(1, 201):
+        # T = randint(2, 10)
+        # n = randint(1, 10)
+        # m = randint(1, 30)
+        # gen(i, T, n, m, 0)
+        # print("finished %d" % i)
+
     # for i in range(1, 21):
         # gen(i, 1000000, 10000, 20000, 1)
         # print("testcase %d finished." % i)
