@@ -14,7 +14,7 @@ args:
 - cases: [5]
   is_abc: false
   is_random: false
-  n: 30000
+  n: 50000
 - cases: [6, 7, 8, 9, 10]
   is_abc: false
   is_random: false
@@ -23,6 +23,7 @@ compile: {c: -O2 -std=c11, cpp: -O2 -std=c++11, java: '', pas: -O2, py: ''}
 data:
 - cases: [8, 9, 10]
 - cases: [1, 2, 3, 4, 5, 6, 7]
+- cases: [0]
 folder: problem
 memory limit: 1024 MB
 name: string
@@ -31,17 +32,36 @@ pre:
 - cases: [1]
 samples:
 - cases: [1]
-time limit: 2.0
+- cases: [2]
+time limit: 1.0
 title: {zh-cn: 字符串}
 type: program
 users:
   acesrc:
-    period_greedy.cpp:
+    bf.cpp:
       expected: []
-      path: acesrc/period_greedy.cpp
+      path: acesrc/bf.cpp
+    greedy.cpp:
+      expected: []
+      path: acesrc/greedy.cpp
     log2.cpp:
       expected: []
       path: acesrc/log2.cpp
+    period_greedy.cpp:
+      expected: []
+      path: acesrc/period_greedy.cpp
+  jsb:
+    c.cpp:
+      expected: []
+      path: jsb/c.cpp
+  lhy:
+    a.cpp:
+      expected: []
+      path: lhy/a.cpp
+  opt:
+    a.cpp:
+      expected: []
+      path: opt/a.cpp
   std:
     std.cpp: {expected: == 100, path: std/std.cpp}
 version: 2

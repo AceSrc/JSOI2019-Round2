@@ -9,7 +9,7 @@ int MinimalRep(const char *s, int n) {
     int k = 0; 
     while (k < n && s[(i + k) % n] == s[(j + k) % n])
       k++;
-    while (k >= n) break;
+    if (k >= n) break;
     if (s[(i + k) % n] > s[(j + k) % n])
       i = max(i + k + 1, j + 1);
     else j = max(i + 1, j + k + 1);
