@@ -2,7 +2,7 @@ args:
 - cases: [1]
   is_abc: false
   is_random: false
-  n: 1000000
+  n: 10
 - cases: [2, 3]
   is_abc: true
   is_random: true
@@ -14,12 +14,8 @@ args:
 - cases: [5]
   is_abc: false
   is_random: false
-  n: 50000
-- cases: [6, 7]
-  is_abc: false
-  is_random: false
-  n: 200000
-- cases: [8, 9, 10]
+  n: 30000
+- cases: [6, 7, 8, 9, 10]
   is_abc: false
   is_random: false
   n: 1000000
@@ -40,19 +36,12 @@ title: {zh-cn: 字符串}
 type: program
 users:
   acesrc:
-    bf.cpp:
+    period_greedy.cpp:
       expected: []
-      path: acesrc/bf.cpp
-    greedy.cpp:
-      expected: []
-      path: acesrc/greedy.cpp
+      path: acesrc/period_greedy.cpp
     log2.cpp:
       expected: []
       path: acesrc/log2.cpp
-  lhy:
-    a.cpp:
-      expected: []
-      path: lhy/a.cpp
   std:
     std.cpp: {expected: == 100, path: std/std.cpp}
 version: 2

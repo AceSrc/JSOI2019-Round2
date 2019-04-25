@@ -23,8 +23,8 @@ def gencases(cases, args, fd):
         if i == n - 1: fd.write('%d\n' % (randint(0, upper)))
         else: fd.write('%d ' % (randint(0, upper)))
 
-def fib(n):
-    f = ['a', 'b']
+def fib(n, offset = 0):
+    f = [chr(ord('a') + offset), chr(ord('b') + offset)]
     fib = [1, 1]
     for i in range(2, n):
         if fib[i - 1] + fib[i - 2] > n:
@@ -49,17 +49,25 @@ def randstr(n, cset):
 def longstr(a, b, k):
     return a + repeat(b, k - 1)
 
-def algo0(n, rand_len, pqqq_len, pqqq_times, ab_len):
-    assert rand_len + pqqq_len * pqqq_times + ab_len * 2 < n
-    rest = n - (rand_len + pqqq_len * pqqq_times + ab_len * 2)
+def circle(n):
+    rt = 'a'
+    for i in range(1, 26):
+        if len(rt) * 2 + 1 > n: break
+        rt = rt + chr(ord('a') + i) + rt 
+    return rt
 
-    rt = randstr(rand_len, "wsxyz")
-    rt += repeat(longstr('p', 'q', pqqq_len), pqqq_times)
-    assert len(rt) == rand_len + pqqq_len * pqqq_times
-    (cur, L) = fib(rest)
+
+def algo0(n, rand_len, period_len, times, C):
+    assert rand_len + period_len * times < n
+    rt = randstr(rand_len, "wxyz")
+    for i in range(21, (21 - 2 * C), -2):
+        T = randint(50, period_len)
+        G = period_len * times // T
+        rt = rt + repeat(randstr(T, [chr(ord('a') + i), chr(ord('a') + i + 1)]), G)
+    (cur, L) = fib(n - len(rt), 2)
     rt += cur
-    rt += repeat('ab', ab_len)
-    rt += repeat('a', rest - L)
+    rt += circle(n - len(rt))
+    rt += randstr(n - len(rt), 'ab')
     return rt;
 
 def algo1(n, rand_len, k, unit_len):
@@ -86,19 +94,45 @@ def algo2(n, gap):
     rt = rt + repeat('a', rest)
     return rt
 
+def algo3(n):
+    m = n // 2
+    rt = 'a'
+    for i in range(4, 26):
+        if len(rt) * 2 + 1 > m: break
+        rt = rt + chr(ord('a') + i) + rt 
+    m = (n - len(rt)) // 3
+    rt = rt + repeat(randstr(50, 'ca'), m // 50)
+    rt = rt + randstr(n - len(rt), 'ab')
+    return rt
+
 def gen(cases, n, is_sample=False):
     with open('data/%d.in' % cases, 'w')  as fd:
         rt = "" 
         if cases == 10:
-            rt = algo0(n, 100000, 200, 2000, 100000)
+            rt = algo0(n, 100000, 200, 1000, 3)
+
         if cases == 9:
-            rt = algo0(n, 100000, 200, 2000, 200000)
+            cur = circle(511)
+            rt = repeat(cur, 1000000 / 511)
+            rt = rt + randstr(n - len(rt), 'ab')
+
         if cases == 8:
-            rt = algo0(n, 100000, 50, 10000, 100000)
+            rt = randstr(100000, "yz")
+            rt += repeat("xy", 50000) # 200000
+            (cur, L) = fib(121393, 22) 
+            rt += cur # 321393
+            rt += repeat(randstr(500, "uvwx"), 500) # 571393 
+            rt += repeat(randstr(100, "stuv"), 2000) # 771393 
+            rt += circle(131071) # 902464
+            rt += repeat(randstr(30, "ab"), 3000) # 992464
+            assert len(rt) == 992464
+            rt += repeat('a', 7536)
         if cases == 7:
-            rt = algo0(n, 20000, 5, 2000, 10000)
+            cur = circle(n // 4)
+            rt = algo0(n - len(cur), 50000, 200, 500, 7)
+            rt += circle(n // 4)
         if cases == 6:
-            rt = algo1(n, 100000, 4, 1000)
+            rt = algo0(n, 100000, 200, 1000, 4)
         if cases == 5:
             rt = algo2(n, n // (26 * 25))
         if cases >= 2 and cases <= 4:
@@ -117,8 +151,8 @@ if __name__ == '__main__':
     for i in range(1, 11):
         if i == 1: gen(i, 10)
         elif i <= 3: gen(i, 1000)
-        elif i == 5: gen(i, 50000)
-        elif i <= 7: gen(i, 200000)
+        elif i == 4: gen(i, 200000)
+        elif i == 5: gen(i, 30000)
         elif i <= 10: gen(i, 1000000)
         print("testcase %d finished." % i)
 

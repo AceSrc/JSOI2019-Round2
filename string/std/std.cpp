@@ -122,11 +122,13 @@ int main() {
     t = _t;
     for (int i = 1; i <= t; i++) idx[i] = Stack[i];
 
+    //for (int j = 1; j <= t; j++) cout << idx[j] << ' ';
+    //cout << endl;
+
     static int o[maxn]; 
     int sz = 0;
     o[++sz] = idx[1];
 
-    End = i;
 
     auto pre = 1;
     auto ptr = 1;
@@ -141,6 +143,7 @@ int main() {
         idx[++t] = o[j];
     }
 
+    End = i;
     sort(o + 1, o + 1 + sz, cmp);
     assert(sz <= 22);
     

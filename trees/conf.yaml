@@ -44,12 +44,6 @@ time limit: 1.0
 title: {zh-cn: 树}
 type: program
 users:
-  lhy:
-    b.cpp: {expected: == 100, path: lhy/b.cpp}
-    brute.cpp:
-      expected: []
-      path: lhy/brute.cpp
-  std:
-    a.cpp: {expected: == 100, path: std/a.cpp}
-    std.cpp: {expected: == 100, path: std/std.cpp}
+  zyb:
+    a.cpp: {expected: == 100, path: zyb/a.cpp}
 version: 2

@@ -127,6 +127,7 @@ int main() {
     int sz = 0;
     o[++sz] = idx[1];
 
+
     End = i;
 
     auto pre = 1;
