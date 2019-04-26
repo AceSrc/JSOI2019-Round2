@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int maxn = 1e6 + 7;
-const int logmaxn = 20;
+const int maxn = 4e6 + 7;
+const int logmaxn = 23;
 
 char s[maxn];
 
@@ -99,7 +99,7 @@ int main() {
   sa.init_lcp(n); 
 
   int t = 0;
-  static int idx[22], Stack[maxn];
+  static int idx[30], Stack[maxn];
   for (int i = 0; i < n; i++) {
     idx[++t] = i;
 
@@ -144,10 +144,13 @@ int main() {
     }
 
     End = i;
-    sort(o + 1, o + 1 + sz, cmp);
-    assert(sz <= 22);
+    int ans = o[1];
+    for (int j = 2; j <= sz; j++) 
+        if (cmp(o[j], ans)) ans = o[j];
+    //sort(o + 1, o + 1 + sz, cmp);
+    assert(sz <= 24);
     
-    printf("%d", o[1] + 1);
+    printf("%d", ans + 1);
     if (i != n - 1) printf(" ");
     else puts("");
   }

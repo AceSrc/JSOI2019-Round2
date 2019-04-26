@@ -2,7 +2,7 @@ args:
 - cases: [1]
   is_abc: false
   is_random: false
-  n: 10
+  n: 20
 - cases: [2, 3]
   is_abc: true
   is_random: true
@@ -14,11 +14,16 @@ args:
 - cases: [5]
   is_abc: false
   is_random: false
+  ch_eq: true
   n: 50000
-- cases: [6, 7, 8, 9, 10]
+- cases: [6, 7]
   is_abc: false
   is_random: false
   n: 1000000
+- cases: [8, 9, 10]
+  is_abc: false
+  is_random: false
+  n: 3000000
 compile: {c: -O2 -std=c11, cpp: -O2 -std=c++11, java: '', pas: -O2, py: ''}
 data:
 - cases: [8, 9, 10]
@@ -41,6 +46,9 @@ users:
     bf.cpp:
       expected: []
       path: acesrc/bf.cpp
+    bff.cpp:
+      expected: []
+      path: acesrc/bff.cpp
     greedy.cpp:
       expected: []
       path: acesrc/greedy.cpp

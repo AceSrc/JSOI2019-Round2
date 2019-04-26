@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int maxn = 1e6 + 7;
+const int maxn = 4e6 + 7;
 
 int n;
 int pre[maxn];

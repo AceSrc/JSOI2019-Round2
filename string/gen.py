@@ -86,26 +86,30 @@ def gen(cases, n, is_sample=False):
         if is_sample:
             rt = randstr(n, 'abc')
         elif cases == 10:
-            rt = repeat(palindromic(127, ord('s') - ord('a')), 1000) # 63500
-            rt += randstr(100000, 'st')
+            rt = repeat(palindromic(127, ord('s') - ord('a')), 1000 * 3) # 63500
+            rt += randstr(100000 * 3, 'st')
             rt += fib(75025, ord('q') - ord('a'))
-            rt += repeat(palindromic(511, ord('i') - ord('a')), 200)
-            rt += repeat('gh', 50000)
-            rt += repeat(randstr(50, 'fg'), 2000) 
-            rt += repeat(randstr(100, 'ef'), 2000) 
-            rt += randstr(100000, 'abc') 
+            rt += repeat(palindromic(511, ord('i') - ord('a')), 200 * 3)
+            rt += repeat('gh', 50000 * 3)
+            rt += repeat(randstr(50, 'fg'), 2000 * 3) 
+            rt += repeat(randstr(100, 'ef'), 2000 * 3) 
+            rt += randstr(100000 * 3, 'abc') 
+            rt += repeat(randstr(10, 'abc'), 10000)
             rt += randstr(n - len(rt), 'ab')
         elif cases == 9:
             cur = palindromic(511)
-            rt = repeat(cur, 1000000 / 511)
+            rt = repeat(cur, n / 511 - 100)
+            rt += repeat(randstr(10, 'ab'), 4000)
             rt = rt + randstr(n - len(rt), 'ab')
             # cur = palindromic(127)
             # rt = repeat(palindromic(127), 500)
         elif cases == 8:
-            rt = repeat(palindromic(127, ord('s') - ord('a')), 3000) # 63500
-            rt += repeat("rs", 50000) 
-            rt += repeat(fib(233, ord('q') - ord('a')), 2000) 
-            rt += repeat('a', n - len(rt))
+            rt = repeat(palindromic(127, ord('s') - ord('a')), 3000 * 3) # 63500
+            rt += repeat("rs", 50000 * 3) 
+            rt += repeat(fib(233, ord('q') - ord('a')), 2000 * 3) 
+            rt += repeat(randstr(50, 'fg'), 3000)
+            # rt += randstr(50000, 'abc')
+            rt += randstr(n - len(rt), 'ab')
 
         elif cases == 7:
             rt = repeat(palindromic(127, ord('s') - ord('a')), 1000) # 63500
@@ -122,9 +126,9 @@ def gen(cases, n, is_sample=False):
         elif cases == 5:
             rt = all_stars(n, n // (26 * 25))
         elif cases >= 2 and cases <= 4:
-            rt = randstr(n, 'abc')
+            rt = 'cabacaba' + randstr(n - 8, 'abc')
         elif cases == 1:
-            rt = 'caccabbbaa'
+            rt = 'cabacabacaccabbbaa'
         elif cases == 0:
             rt = randstr(n, 'abc')
 
@@ -138,11 +142,12 @@ if __name__ == '__main__':
     gen(2, 100, is_sample=True)
     print('sample finished. ')
     for i in range(1, 11):
-        if i == 1: gen(i, 10)
+        if i == 1: gen(i, 18)
         elif i <= 3: gen(i, 1000)
         elif i == 4: gen(i, 200000)
-        elif i == 5: gen(i, 50000)
-        elif i <= 10: gen(i, 1000000)
+        elif i == 5: gen(i, 49400)
+        elif i <= 7: gen(i, 1000000)
+        elif i <= 10: gen(i, 3000000)
         print("testcase %d finished." % i)
 
 

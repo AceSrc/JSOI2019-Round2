@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int maxn = 1e6 + 7;
-const int logmaxn = 20;
+const int maxn = 4e6 + 7;
+const int logmaxn = 23;
 
 char s[maxn];
 
@@ -155,9 +155,12 @@ int main() {
         }
     }
 
-    sort(o + 1, o + 1 + sz, cmp);
+    int ans = o[1];
+    for (int j = 2; j <= sz; j++) 
+        if (cmp(o[j], ans)) ans = o[j];
+    //sort(o + 1, o + 1 + sz, cmp);
     
-    printf("%d", 1 + o[1]);
+    printf("%d", 1 + ans);
     if (i != n - 1) printf(" ");
     else puts("");
   }
