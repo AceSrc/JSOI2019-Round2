@@ -23,6 +23,7 @@ def check(args, fi):
         assert (action == 0 and t <= T - 1) or (action == 1 and t <= T)
         assert 1 <= x and x <= n
         assert 1 <= y and y <= n
+    assert not fi.readline()
 
 def checker():
     with open('conf.yaml', 'r') as f:
@@ -34,6 +35,11 @@ def checker():
             log("start %d.in" % cases)
             with open('data/%d.in' % cases, 'r') as inputfile:
                 check(item, inputfile)
+    
+    for i in range(1, 3):
+        log("start sample %d.in" % i)
+        with open('down/%d.in' % i, 'r') as inputfile:
+            check({'T': 100, 'n': 100, 'm': 100}, inputfile)
 
 if __name__ == '__main__':
     checker()

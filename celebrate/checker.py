@@ -18,6 +18,7 @@ def check(args, fi):
     if args['is_abc']:
         for i in s:
             assert 0 <= ord(i) - ord('a') <= 2
+    assert not fi.readline()
 
 def checker():
     with open('conf.yaml', 'r') as f:

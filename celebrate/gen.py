@@ -84,7 +84,10 @@ def gen(cases, n, is_sample=False):
     with open(infile, 'w')  as fd:
         rt = "" 
         if is_sample:
-            rt = randstr(n, 'abc')
+            if cases == 1:
+                rt = 'abaacaba'
+            else: 
+                rt = randstr(1000, 'abcd')
         elif cases == 10:
             rt = repeat(palindromic(127, ord('s') - ord('a')), 1000 * 3) # 63500
             rt += randstr(100000 * 3, 'st')
@@ -138,8 +141,8 @@ def gen(cases, n, is_sample=False):
 
 if __name__ == '__main__':
     compile()
-    gen(1, 10, is_sample=True)
-    gen(2, 100, is_sample=True)
+    gen(1, 8, is_sample=True)
+    gen(2, 1000, is_sample=True)
     print('sample finished. ')
     for i in range(1, 11):
         if i == 1: gen(i, 18)

@@ -9,20 +9,10 @@ def compile():
     sp.communicate()
     assert sp.returncode == 0
 
-def run(cases):
-    sp = subprocess.Popen(["std/std < data/%d.in > data/%d.ans" % (cases, cases)], shell=True)
+def run(cases, infile, outfile):
+    sp = subprocess.Popen(["std/std < %s > %s" % (infile, outfile)], shell=True)
     sp.communicate()
     assert sp.returncode == 0
-
-def gencases(cases, args, fd):
-    if cases == 1:
-        fd.write('3\n1 2 3\n')
-        return 
-    (n, upper) = tuple(args)
-    fd.write("%d\n" % (n))
-    for i in range(n):
-        if i == n - 1: fd.write('%d\n' % (randint(0, upper)))
-        else: fd.write('%d ' % (randint(0, upper)))
 
 def rand_edge(fd, T, n, m):
     for i in range(m):
@@ -92,34 +82,42 @@ def two_layers(fd, T, n, m):
     sub_hack_bfs(T, n // 2, m, fd, n // 2, T // 2)
      
 
-def gen(cases, T, n, m, algo):
-    with open('data/%d.in' % cases, 'w')  as fd:
+def gen(cases, T, n, m, algo, is_sample=False):
+    infile = "data/%d.in" % cases if not is_sample else "down/%d.in" % cases
+    outfile = "data/%d.ans" % cases if not is_sample else "down/%d.ans" % cases
+    with open(infile, 'w')  as fd:
         fd.write("%d %d %d\n" % (T, n, m)) 
-        if algo == 0:
+        if cases == 1 and is_sample:
+            fd.write("0 2 1 3\n1 1 2 3\n") 
+        elif algo == 0:
             gen_random(T, n, m, fd)
-        if algo == 1:
+        elif algo == 1:
             hack_bfs(T, n, m, fd)
-        if algo == 2:
-            gen_layers(fd, T, n, m, 100, 10, 1, 1)
-        if algo == 3:
+        elif algo == 2:
+            gen_layers(fd, T, n, m, 100, 8, 1, 1)
+        elif algo == 3:
             two_layers(fd, T, n, m)
-    run(cases)
+    run(cases, infile, outfile)
 
 if __name__ == '__main__':
     compile()
     # gen(0, 3, 4, 8, 0)
-    for i in range(1, 13):
+    for i in range(1, 3):
+        if i == 1: gen(i, 3, 3, 2, 0, True) 
+        if i == 2: gen(i, 10, 10, 20, 0, True) 
+        print("finished sample %d" % i)
+
+    for i in range(1, 11):
         if i == 1: gen(i, 2, 10, 10, 0)
         elif i <= 3: gen(i, 100, 100, 200, 0)
-        elif i == 4: gen(i, 40000, 10000, 20000, 1)
-        elif i == 5: gen(i, 40000, 10000, 20000, 2)
-        elif i == 6: gen(i, 1000000, 10000, 20000, 3)
+        elif i == 4: gen(i, 1000000, 3000, 6000, 3)
+        elif i == 5: gen(i, 40000, 10000, 20000, 1)
+        elif i == 6: gen(i, 40000, 10000, 20000, 2)
         elif i == 7: gen(i, 1000000, 30000, 60000, 2)
-        elif i == 8: gen(i, 1000000, 50000, 100000, 1)
+        elif i == 8: gen(i, 1000000, 40000, 80000, 1)
         elif i == 9: gen(i, 1000000, 50000, 100000, 2)
         elif i == 10: gen(i, 1000000, 50000, 100000, 3)
-        elif i == 11: gen(i, 3, 3, 6, 0)
-        elif i == 12: gen(i, 10, 5, 10, 0)
+        print("finished testcase %d" % i)
     
     # for i in range(1, 201):
         # T = randint(2, 10)

@@ -7,12 +7,12 @@ args:
   cases: [2, 3]
   m: 200
   n: 100
-- T: 40000
-  cases: [4, 5]
-  m: 20000
-  n: 10000
 - T: 1000000
-  cases: [6]
+  cases: [4]
+  m: 6000
+  n: 3000
+- T: 40000
+  cases: [5, 6]
   m: 20000
   n: 10000
 - T: 1000000
@@ -20,7 +20,11 @@ args:
   m: 60000
   n: 30000
 - T: 1000000
-  cases: [8, 9, 10]
+  cases: [8]
+  m: 80000
+  n: 40000
+- T: 1000000
+  cases: [9, 10]
   m: 100000
   n: 50000
 compile: {c: -O2 -std=c11, cpp: -O2 -std=c++11, java: '', pas: -O2, py: ''}
@@ -45,6 +49,9 @@ users:
     iter.cpp:
       expected: []
       path: bf/iter.cpp
+    pure_bfs.cpp:
+      expected: []
+      path: bf/pure_bfs.cpp
     sp_greedy.cpp:
       expected: []
       path: bf/sp_greedy.cpp
@@ -54,6 +61,13 @@ users:
   std:
     iter.cpp: {expected: == 100, path: std/iter.cpp}
     std.cpp: {expected: == 100, path: std/std.cpp}
+  wcy:
+    a.cpp:
+      expected: []
+      path: wcy/a.cpp
+    b.cpp:
+      expected: []
+      path: wcy/b.cpp
   zyb:
     0.cpp:
       expected: []
