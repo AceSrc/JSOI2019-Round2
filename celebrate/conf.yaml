@@ -31,7 +31,7 @@ data:
 - cases: [0]
 folder: problem
 memory limit: 1024 MB
-name: string
+name: celebrate
 partial score: false
 pre:
 - cases: [1]
