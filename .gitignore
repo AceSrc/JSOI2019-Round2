@@ -23,3 +23,6 @@ arbiter*
 *.tmp
 *.in
 *.ans
+.*
+!.gitignore
+!.gitattributes
