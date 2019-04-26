@@ -1,7 +1,9 @@
-end time: 1926-08-17 01:00:01+0800
+end time: 2019-04-28 13:00:00+0800
 folder: day
 name: day1
-start time: 1926-08-17 01:00:00+0800
-subdir: [predict, trees, string]
-title: {zh-cn: JSOI}
+start time: 2019-04-28 08:00:00+0800
+subdir: [predict, neural, celebrate]
+"title": {
+  zh-cn: "JSOI2019 Round 2"
+}
 version: 2

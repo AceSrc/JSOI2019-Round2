@@ -27,7 +27,7 @@ compile: {c: -O2 -std=c11, cpp: -O2 -std=c++11, java: '', pas: -O2, py: ''}
 data:
 - cases: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 folder: problem
-memory limit: 1024 MB
+memory limit: 1024 MiB
 name: predict
 partial score: false
 pre:
