@@ -35,7 +35,7 @@ pre:
 samples:
 - cases: [1, 2]
 time limit: 2.0
-title: {zh-cn: 预言}
+title: {zh-cn: 精准预测}
 type: program
 users:
   bf:

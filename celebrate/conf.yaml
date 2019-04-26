@@ -39,7 +39,7 @@ samples:
 - cases: [1]
 - cases: [2]
 time limit: 1.0
-title: {zh-cn: 字符串}
+title: {zh-cn: 节日庆典}
 type: program
 users:
   acesrc:

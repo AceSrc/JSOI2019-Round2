@@ -41,7 +41,7 @@ pre:
 samples:
 - cases: [1, 2]
 time limit: 1.0
-title: {zh-cn: 树}
+title: {zh-cn: 神经网络}
 type: program
 users:
   zyb:
