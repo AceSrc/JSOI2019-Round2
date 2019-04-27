@@ -139,7 +139,7 @@ int main(int argc, char **argv){
         for (int i=0;i<m;i++) line_tree(sz[i],1);
         for (int i=0;i<2;i++) line_tree(1200,1);
     }
-    if (tp >= 15 && tp <= 20){
+    if (tp >= 15 && tp <= 18){
         // 30 point
         // 300 * tree, sum(m)<=5000
         cout << 300 << endl;
@@ -149,5 +149,21 @@ int main(int argc, char **argv){
         for (int i=0;i<m;i++) Random_tree(sz[i]);
         special_tree(1200);
         star_tree(1200);
+    }
+    if (tp == 19){
+        // 5 point
+        // 2 * tree, sum(m)<=5000
+        cout << 2 << endl;
+        star_tree(2500);
+        line_tree(2500);
+    }
+    if (tp == 20) {
+        // 5 point
+        // 300 * tree, sum(m)<=5000
+        m = 101;
+        cout << m << endl;
+        Random_tree(4500);
+        fill_sz(500, m - 1);
+        for (int i = 0; i < m - 1; i++) Random_tree(sz[i]);
     }
 }

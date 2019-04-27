@@ -63,6 +63,12 @@ long long C(int n, int m) {
     return step[n] * inv[m] % mod * inv[n - m] % mod;
 }
 
+int anc[maxn];
+int find(int x) {
+    if (x == anc[x]) return x;
+    return anc[x] = find(anc[x]);
+}
+
 int main(int argc, char **argv) {
     step[0] = 1;
     for (int i = 1; i < maxn; i++) step[i] = step[i - 1] * i % mod;
@@ -81,10 +87,15 @@ int main(int argc, char **argv) {
     for (int i = 1; i <= n; i++) {
         scanf("%d", &m[i]);
         for (int j = 1; j <= m[i]; j++) vector<int>().swap(e[j]);
+        for (int j = 1; j <= m[i]; j++) anc[j] = j;
         for (int j = 1, u, v; j < m[i]; j++) {
             scanf("%d%d", &u, &v);
+            assert(u >= 1 && u <= m[i]);
+            assert(v >= 1 && v <= m[i]);
+            assert(find(u) != find(v));
             e[u].push_back(v);
             e[v].push_back(u);
+            anc[find(u)] = find(v);
         }
         dp(1, -1);
         for (int j = 1; j <= m[i]; j++) candy[i][j] = f[1][j][0];
