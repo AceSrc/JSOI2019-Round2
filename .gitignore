@@ -18,8 +18,6 @@ tsinsen-oj*
 arbiter*
 *.0
 *.tmp
-*.in
-*.ans
 .*
 !.gitignore
 !.gitattributes
