@@ -1,8 +1,7 @@
 *.log
 __pycache__
 *.zip
-release
-uoj
+release uoj
 noi
 pc2
 descriptions
@@ -14,8 +13,6 @@ result
 tmp
 bin
 log
-lemon
-lemon*
 .DS_Store
 tsinsen-oj*
 arbiter*
