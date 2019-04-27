@@ -15,6 +15,7 @@ int pow(int x, int times) {
     return rt;
 }
 
+int inx[maxn];
 long long f[maxn][maxn][2], g[2][maxn][3];
 long long candy[maxn][maxn], Str[maxn][maxn], ans[2];
 int sz[maxn], m[maxn];
@@ -93,6 +94,11 @@ int main(int argc, char **argv) {
         for (int j = 1; j <= m[i]; j++) candy[i][j] = f[1][j][0];
     }
 
+    for (int i = 1; i <= n; i++) inx[i] = i;
+    sort(inx + 1, inx + n + 1, [&](int a, int b) -> bool {
+        return m[a] > m[b];
+    });
+
     //for (int i = 1; i <= n; i++) {
         //for (int j = 1; j <= m[i]; j++) cout << candy[i][j] << ' ';
         //cout << endl;
@@ -107,13 +113,14 @@ int main(int argc, char **argv) {
 
     int A = 0;
     long long ans = 0;
-    for (int u = 1; u <= n; u++) {
+    for (int _ = 1; _ <= n; _++) {
+        int u = inx[_];
         for (int j = 1; j <= m[u]; j++) 
         for (int k = 0; k < j; k++) {
             long long kkk = candy[u][j] * Str[j][j - k] % mod; 
 
             for (int i = 0; i <= tot; i++) 
-                if (u != n) {
+                if (u != inx[n]) {
                     int c = 1;
                     if (k & 1) c = -1;
                     (g[idx ^ 1][i + j - k] += c * g[idx][i] * kkk) %= mod;

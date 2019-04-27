@@ -132,23 +132,33 @@ int main(int argc, char **argv){
     if (tp==11 || tp == 12 || tp == 13 || tp == 14){
         // 20 point
         // 300 * line_tree, sum(m)<=5000
-        cout << 300 << endl;
-        n=1000; m=294;
-        fill_sz(n,m);
-        for (int i=0;i<4;i++) line_tree(400,1);
+        cout << 4 + 5 + 50 << endl;
+        for (int i=0;i<2;i++) line_tree(1500,1);
+        line_tree(800,1);
+        line_tree(400,1);
+
+
+        m = 5;
+        fill_sz(700,m);
         for (int i=0;i<m;i++) line_tree(sz[i],1);
-        for (int i=0;i<2;i++) line_tree(1200,1);
+        m = 50;
+        fill_sz(100,m);
+        for (int i=0;i<m;i++) line_tree(sz[i],1);
     }
     if (tp >= 15 && tp <= 18){
         // 30 point
         // 300 * tree, sum(m)<=5000
-        cout << 300 << endl;
-        n=1000; m=294;
-        fill_sz(n,m);
-        for (int i=0;i<4;i++) Random_tree(400);
+        cout << 4 + 5 + 100 << endl;
+        special_tree(1500);
+        star_tree(1500);
+        for (int i=0;i<2;i++) Random_tree(500);
+
+        m = 5;
+        fill_sz(800,m);
         for (int i=0;i<m;i++) Random_tree(sz[i]);
-        special_tree(1200);
-        star_tree(1200);
+        m = 100;
+        fill_sz(200,m);
+        for (int i=0;i<m;i++) Random_tree(sz[i]);
     }
     if (tp == 19){
         // 5 point
@@ -160,10 +170,10 @@ int main(int argc, char **argv){
     if (tp == 20) {
         // 5 point
         // 300 * tree, sum(m)<=5000
-        m = 101;
+        m = 6;
         cout << m << endl;
-        Random_tree(4500);
-        fill_sz(500, m - 1);
+        Random_tree(3500);
+        fill_sz(1500, m - 1);
         for (int i = 0; i < m - 1; i++) Random_tree(sz[i]);
     }
 }

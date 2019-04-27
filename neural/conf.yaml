@@ -40,10 +40,19 @@ pre:
 - cases: [1, 2]
 samples:
 - cases: [1, 2]
-time limit: 1.0
+time limit: 3.0
 title: {zh-cn: 神经网络}
 type: program
 users:
+  lhy:
+    b.cpp:
+      expected: []
+      path: lhy/b.cpp
+  std:
+    c.cpp: {expected: == 100, path: std/c.cpp}
+    std.cpp: {expected: == 100, path: std/std.cpp}
   zyb:
-    a.cpp: {expected: == 100, path: zyb/a.cpp}
+    a.cpp:
+      expected: []
+      path: zyb/a.cpp
 version: 2
