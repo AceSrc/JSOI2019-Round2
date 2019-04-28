@@ -43,6 +43,7 @@ void add(int t1, int x, bool xflag, int t2, int y, bool yflag) {
 
 int main(int argc, char **argv) {
     scanf("%d%d%d", &T, &n, &m);
+    T++;
     for (int i = 1; i <= n + m + 2; i++) manager.push(i);
     for (int i = 1; i <= m; i++) {
         scanf("%d%d%d%d", &action[i], &t[i], &x[i], &y[i]);
